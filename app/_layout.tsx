@@ -83,7 +83,7 @@ function RootLayoutNav() {
     }
   },[isLoaded])
   //VITOR:
-  //here we define how each screen show be shown with the Stack.Screen JSX tag and its options
+  //here we define how each screen should be shown with the Stack.Screen JSX tag and its options
   // for the tabs we create a simple change, for the login we create a modal view (this easy!)
   // and for the booking view we use a nice animation! (right now it doesn't have bg though)
     return (
