@@ -41,7 +41,7 @@ const categories = [
     onCategoryChanged: (category: string) => void;
   }
 
-export default function ExploreHeader() {
+export default function ExploreHeader({onCategoryChanged}:Props) {
     const scrollRef = useRef<ScrollView>(null)
     const itemRef = useRef<Array<TouchableOpacity | null>>([])
     const [activeIndex,setActiveIndex] = useState(0)
@@ -53,6 +53,7 @@ export default function ExploreHeader() {
             scrollRef.current?.scrollTo({x:x,y:0,animated:true})
         })
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+        onCategoryChanged(categories[index].name)
     }
   return (
     <SafeAreaView style={{flex:1}}>
@@ -78,7 +79,7 @@ export default function ExploreHeader() {
             ref={scrollRef}
             contentContainerStyle={{
                 alignItems:"center",
-                gap:20,
+                gap:30,
                 paddingHorizontal:16
             }}
             >
