@@ -33,7 +33,7 @@ const Listing = ({listings:items,category}:Props) => {
 // this is declared separatedly to make understanding easier
 // the asChild in Link is needed for Expo Rendering of link
 const renderRow: ListRenderItem<Listing> = ({item}) => (
-  <Link href={'/listing/' + item.id} asChild>
+  <Link href={`/listing/${item.id}`} asChild>
     <TouchableOpacity>
       <View style={styles.listing}>
         <Image source={{uri:item.medium_url}} style={styles.image}/>
