@@ -1,6 +1,6 @@
 import { View,Text,StyleSheet, Dimensions,Image, TouchableOpacity, Share } from "react-native";
 import React, { useLayoutEffect } from 'react'
-import { useLocalSearchParams, useNavigation } from "expo-router";
+import { router, useLocalSearchParams, useNavigation } from "expo-router";
 import listingsData from '../../assets/data/airbnb-listings.json'
 import Animated, { interpolate, SlideInDown, useAnimatedRef, useAnimatedStyle, useScrollViewOffset } from "react-native-reanimated";
 import Listing from "@/components/Listing";
@@ -55,7 +55,7 @@ useLayoutEffect(() => {
         <TouchableOpacity style={styles.roundButton} onPress={sharedListingButton}>
           <Ionicons name='share-outline' size={22} color={'#000'}/>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.roundButton} onPress={sharedListingButton}>
+        <TouchableOpacity style={styles.roundButton}>
           <Ionicons name='heart-outline' size={22} color={'#000'}/>
         </TouchableOpacity>
         
@@ -63,7 +63,7 @@ useLayoutEffect(() => {
     ),
     headerLeft: () => (
       <View style={styles.bar}>
-        <TouchableOpacity style={styles.roundButton} onPress={sharedListingButton}>
+        <TouchableOpacity style={styles.roundButton} onPress={router.back}>
           <Ionicons name='chevron-back' size={22} color={'#000'}/>
         </TouchableOpacity>
       </View>
