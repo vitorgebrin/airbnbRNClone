@@ -7,7 +7,8 @@ import Animated, { FadeInRight, FadeOutLeft } from 'react-native-reanimated'
 
 interface Props {
     listings: any[],
-    category:string
+    category:string,
+    refresh:number
 }
 
 type Listing = {
@@ -20,9 +21,17 @@ type Listing = {
   xl_picture_url:string
 }
 
-const Listing = ({listings:items,category}:Props) => {
+const Listing = ({listings:items,category,refresh}:Props) => {
   const [loading,setLoading] = useState(false)
   const listRef = useRef<FlatList>(null)
+
+
+  useEffect(()=>{
+    if (refresh) {
+      listRef.current?.scrollToOffset({offset:0,animated:true})
+    }
+    },[refresh])
+
 
     useEffect(() => {
       setLoading(true)
@@ -64,6 +73,7 @@ const renderRow: ListRenderItem<Listing> = ({item}) => (
       ref={listRef}
       data={loading ? [] : items}
       renderItem={renderRow}
+      ListHeaderComponent={<Text style={{textAlign:'center',fontFamily:'mon-sb',fontSize:16,marginTop:4}}>{items.length} homes</Text>}
       />
     </View>
   )

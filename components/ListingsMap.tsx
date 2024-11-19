@@ -19,22 +19,15 @@ const INITIAL_REGION = {
   longitudeDelta: 9,
 };
 
+/*The memo function here was added to avoid loading the map every category change (no change to the map) */
 const ListingsMap = memo(({ listings }: Props) => {
   const router = useRouter();
   const mapRef = useRef<any>(null);
 
-  // When the component mounts, locate the user
- 
-
-  // When a marker is selected, navigate to the listing page
   const onMarkerSelected = (event: any) => {
     router.push(`/listing/${event.properties.id}`);
   };
-
-  // Focus the map on the user's location
   
-
-  // Overwrite the renderCluster function to customize the cluster markers
   const renderCluster = (cluster: any) => {
     const { id, geometry, onPress, properties } = cluster;
 
@@ -64,6 +57,8 @@ const ListingsMap = memo(({ listings }: Props) => {
   return (
     <View style={defaultStyles.container}>
       <MapView
+      /* I was having some trouble here, but then i discovered that from expo 51 */
+      /*Google provider was not supported for Apple anymore */
         ref={mapRef}
         animationEnabled={false}
         style={StyleSheet.absoluteFillObject}
